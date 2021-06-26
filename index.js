@@ -2,7 +2,7 @@ var express = require('express');
 const bodyParser = require('body-parser');
 
 var pgp = require('pg-promise')();
-var db = pgp(process.env.DATABASE_URL || {database: 'test'});
+var db = pgp(process.env.DATABASE_URL || {database: 'restaurantReview'});
 
 // var db = pgp({database: 'restaurantReview'});
 const http = require('http');
