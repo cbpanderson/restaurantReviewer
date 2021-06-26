@@ -3,22 +3,14 @@ const bodyParser = require('body-parser');
 
 var pgp = require('pg-promise')();
 var db = pgp(process.env.DATABASE_URL || {database: 'restaurantReview'});
-
-// var db = pgp({database: 'restaurantReview'});
 const http = require('http');
-// const hostname = '127.0.0.1';
-// const port = 8000;
-
 var app = express();
-
 const es6Renderer = require('express-es6-template-engine');
-app.engine('html', es6Renderer);
 
+app.engine('html', es6Renderer);
 app.set('views', 'templates');
 app.set('view engine', 'html');
-
-const server = http.createServer(app);
-const db = require('./db');
+// const server = http.createServer(app);
 
 //middleware
 app.use(bodyParser.urlencoded());
@@ -32,7 +24,3 @@ var PORT = process.env.PORT || 8000;
 app.listen(PORT, function () {
   console.log('Listening on port ' + PORT);
 });
-
-// server.listen(8000, () => {
-//     console.log('listening on *:8000');
-// });
