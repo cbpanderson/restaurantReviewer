@@ -1,10 +1,13 @@
 var express = require('express');
 const bodyParser = require('body-parser');
-var pgp = require('pg-promise')({});
-var db = pgp({database: 'restaurantReview'});
+
+var pgp = require('pg-promise')();
+var db = pgp(process.env.DATABASE_URL || {database: 'test'});
+
+// var db = pgp({database: 'restaurantReview'});
 const http = require('http');
-const hostname = '127.0.0.1';
-const port = 3000;
+// const hostname = '127.0.0.1';
+// const port = 8000;
 
 var app = express();
 
@@ -25,6 +28,11 @@ app.get('/', (req, res) => {
     res.sendFile(__dirname + '/index.html');
 });
 
-server.listen(3000, () => {
-    console.log('listening on *:3000');
+var PORT = process.env.PORT || 8000;
+app.listen(PORT, function () {
+  console.log('Listening on port ' + PORT);
 });
+
+// server.listen(8000, () => {
+//     console.log('listening on *:8000');
+// });
